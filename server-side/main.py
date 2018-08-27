@@ -49,8 +49,8 @@ class Soil(db.Model):
 	
 # This is the home ('/') directory
 # This method returns a JSON object containing soil and environment data from the database
-@app.route('/')
-def home():
+@app.route('/api/')
+def api():
 	env = Environment.query.all()
 	soil = Soil.query.all()
 	env_query = {}
@@ -63,9 +63,11 @@ def home():
 	return jsonify({"Environment_data": env_query, "Soil_data": soil_query})
 
 # This is a template for processing custom requests
-@app.route('/<string:request>/')
-def req(request):
-	return request
+@app.route('/', methods=['GET'])
+def home():
+	env = Environment.query.all()
+	soil = Soil.query.all()
+	return render_template('main.html', env_data=env, soil_data=soil)
 
 # This method is used for creating a content inside the database
 # Use this only for development only
@@ -79,4 +81,4 @@ def something():
 	db.session.commit()
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')

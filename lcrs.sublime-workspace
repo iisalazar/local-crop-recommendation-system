@@ -11,7 +11,7 @@
 			"file": "server-side/main.py",
 			"settings":
 			{
-				"buffer_size": 1982,
+				"buffer_size": 2632,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -74,9 +74,7 @@
 	},
 	"expanded_folders":
 	[
-		"/home/wvyvern/Projects/sip/lcrs",
-		"/home/wvyvern/Projects/sip/lcrs/server-side",
-		"/home/wvyvern/Projects/sip/lcrs/server-side/templates"
+		"/home/wvyvern/Projects/sip/lcrs"
 	],
 	"file_history":
 	[
@@ -131,15 +129,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1982,
+						"buffer_size": 2632,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1450,
-								1450
+								636,
+								636
 							]
 						],
 						"settings":
@@ -147,7 +145,7 @@
 							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 245.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
