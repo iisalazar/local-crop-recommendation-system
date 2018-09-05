@@ -2,6 +2,8 @@ from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
+from logic import Calculate
+import random
 # getting the root directory of project
 ROOT_DIR = os.path.dirname(os.path.abspath('.'))
 # Instantiate the app
@@ -49,8 +51,8 @@ class Soil(db.Model):
 	
 # This is the home ('/') directory
 # This method returns a JSON object containing soil and environment data from the database
-@app.route('/')
-def home():
+@app.route('/api/')
+def api():
 	env = Environment.query.all()
 	soil = Soil.query.all()
 	env_query = {}
@@ -63,18 +65,62 @@ def home():
 	return jsonify({"Environment_data": env_query, "Soil_data": soil_query})
 
 # This is a template for processing custom requests
-@app.route('/<string:request>/')
-def req(request):
-	return request
+@app.route('/')
+def main():
+	env = Environment.query.all()
+	soil = Soil.query.all()
+	env_query = {}
+	soil_query = {}
+	for r in range(len(env)):
+		env_query['Query ' + str(r)] = env[r].serialize
+	for s in range(len(soil)):
+		soil_query['Query ' + str(s)] = soil[s].serialize
+
+	return render_template("main.html", environment=env_query, soil=soil_query)
+	#return jsonify({"Environmental data": env_query, "Soil data": soil_query})
 
 # This method is used for creating a content inside the database
 # Use this only for development only
+
+# This route is used for querying logic requests
+# That is, when a user want's to query a recommended crop for it
+@app.route('/logic/')
+def log():
+	calculate = Calculate()
+	env = Environment.query.all()
+	soil = Soil.query.all()
+	temperature = []
+	air_pressure = []
+	humidity = []
+	soil_moisture = []
+
+	for i in env:
+		temperature.append(i.serialize['temperature'])
+		air_pressure.append(i.serialize['air_pressure'])
+		humidity.append(i.serialize['humidity'])
+
+	for s in soil:
+		soil_moisture.append(s.serialize['soil_moisture'])
+
+	temp = calculate.get_mean(data=temperature)
+	pres = calculate.get_mean(data=air_pressure)
+	humd = calculate.get_mean(data=humidity)
+	soil_h = calculate.get_mean(data=soil_moisture)
+	print(temp)
+	print(pres)
+	print(humd)
+	print(soil_h)
+	return render_template('logic.html', temperature=temp, pressure=pres, soil_moisture=soil_h)
+	#return jsonify({"Temperature": temp, "Pressure": pres, "Humidity": humd, "Soil Moisture": soil_h})
+
+
+
 def something():
-	signature = Environment(date_measured=datetime.now(), temperature=1234.1, air_pressure=12351.4, humidity=10.13)
+	signature = Environment(date_measured=datetime.now(), temperature=random.randrange(1000, 1200), air_pressure=random.randrange(11000, 12500), humidity=random.randrange(10,20))
 	db.session.add(signature)
 	db.session.commit()
 
-	soil = Soil(date_measured=datetime.now(), soil_moisture=3.14156)
+	soil = Soil(date_measured=datetime.now(), soil_moisture=random.randrange(0,20))
 	db.session.add(soil)
 	db.session.commit()
 
