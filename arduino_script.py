@@ -18,13 +18,25 @@ class Arduino:
 			print("Something went wrong")
 
 	def write_data(self, data):
-		connection = sqlite3.connect('database.db')
-		cursor = connection.cursor()
-		cursor.executescript("INSERT INTO soil(date_measured, soil_moisture) VALUES('{}', {});".format(datetime.now(), data))
-		connection.commit()
-
+		try:
+			connection = sqlite3.connect('database.db')
+			cursor = connection.cursor()
+			cursor.executescript("INSERT INTO soil(date_measured, soil_moisture) VALUES('{}', {});".format(datetime.now(), data))
+			connection.commit()
+		except sqlite3.Error:
+			print("Something went wrong")
+			if connection:
+				print("Rolling back!")
+				connection.rollback()
+		except:
+			print("Putangina")
+			sys.exit()
+		finally:
+			if connection:
+				connection.close()
 if __name__ == '__main__':
-	arduino = Arduino()
-	data = arduino.read_data()
-	arduino.write_data(data)
+	while True:
+		arduino = Arduino()
+		data = arduino.read_data()
+		arduino.write_data(data)
 #	print(a)
