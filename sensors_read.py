@@ -25,13 +25,9 @@ class WeatherStation:
 		def write_data(self):
 			try:
 				connection = sqlite3.connect('database.db')
-				print("Debug 1")
 				cursor = connection.cursor()
-				print("Debug 2")
 				cursor.executescript("INSERT INTO environment(date_measured, temperature, air_pressure, humidity) VALUES('{}', {}, {}, {});".format(datetime.now(), statistics.mean([self.temperature, self.temp]), self.pressure, self.humidity))
-				print("Debug 3")
-				cursor.commit()
-				print("Debug 4")
+				connection.commit()
 			except sqlite3.Error:
 				print("Something went wrong! Rolling back!")
 				if connection:
@@ -44,8 +40,10 @@ class WeatherStation:
 
 if __name__ == '__main__':
 	while True:
-		weather_station = WeatherStation()
-		data = weather_station.get_data()
-		print(data)
-		weather_station.write_data()
-		time.sleep(1)
+		try:
+			weather_station = WeatherStation()
+			data = weather_station.get_data()
+			print(data)
+			weather_station.write_data()
+		except KeyboardInterrupt:
+			sys.exit()
