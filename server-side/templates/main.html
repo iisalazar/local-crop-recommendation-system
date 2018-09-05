@@ -48,7 +48,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for e in env_data %}
+				{{ environment }}
+				{% for e in environment %}
 				<tr>
 					<td>
 						{{ e.id }}
@@ -85,7 +86,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for s in soil_data %}
+				{% for s in soil %}
 				<tr>
 					<td>
 						{{ s.id }}

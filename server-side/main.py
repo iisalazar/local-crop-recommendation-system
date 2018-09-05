@@ -76,7 +76,8 @@ def main():
 	for s in range(len(soil)):
 		soil_query['Query ' + str(s)] = soil[s].serialize
 
-	return jsonify({"Environmental data": env_query, "Soil data": soil_query})
+	return render_template("main.html", environment=env_query, soil=soil_query)
+	#return jsonify({"Environmental data": env_query, "Soil data": soil_query})
 
 # This method is used for creating a content inside the database
 # Use this only for development only
@@ -87,20 +88,30 @@ def main():
 def log():
 	calculate = Calculate()
 	env = Environment.query.all()
+	soil = Soil.query.all()
 	temperature = []
 	air_pressure = []
 	humidity = []
+	soil_moisture = []
+
 	for i in env:
 		temperature.append(i.serialize['temperature'])
 		air_pressure.append(i.serialize['air_pressure'])
 		humidity.append(i.serialize['humidity'])
+
+	for s in soil:
+		soil_moisture.append(s.serialize['soil_moisture'])
+
 	temp = calculate.get_mean(data=temperature)
 	pres = calculate.get_mean(data=air_pressure)
 	humd = calculate.get_mean(data=humidity)
+	soil_h = calculate.get_mean(data=soil_moisture)
 	print(temp)
 	print(pres)
 	print(humd)
-	return jsonify({"Temperature": temp, "Pressure": pres, "Humidity": humd})
+	print(soil_h)
+	return render_template('logic.html', temperature=temp, pressure=pres, soil_moisture=soil_h)
+	#return jsonify({"Temperature": temp, "Pressure": pres, "Humidity": humd, "Soil Moisture": soil_h})
 
 
 

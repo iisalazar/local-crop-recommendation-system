@@ -11,7 +11,36 @@
 			"file": "server-side/main.py",
 			"settings":
 			{
-				"buffer_size": 2632,
+				"buffer_size": 4081,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server-side/crops.txt",
+			"settings":
+			{
+				"buffer_size": 331,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "rice, corn, coconut, sugarcane, bananas, pineapple"
+			}
+		},
+		{
+			"file": "server-side/RRLS.txt",
+			"settings":
+			{
+				"buffer_size": 2220,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "RRL"
+			}
+		},
+		{
+			"file": "server-side/templates/logic.html",
+			"settings":
+			{
+				"buffer_size": 814,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -20,7 +49,7 @@
 			"file": "server-side/templates/main.html",
 			"settings":
 			{
-				"buffer_size": 100,
+				"buffer_size": 1487,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -74,10 +103,14 @@
 	},
 	"expanded_folders":
 	[
-		"/home/wvyvern/Projects/sip/lcrs"
+		"/home/wvyvern/Projects/sip/lcrs",
+		"/home/wvyvern/Projects/sip/lcrs/server-side",
+		"/home/wvyvern/Projects/sip/lcrs/server-side/templates"
 	],
 	"file_history":
 	[
+		"/home/wvyvern/Projects/sip/lcrs/server-side/crop-sort.py",
+		"/home/wvyvern/Projects/sip/lcrs/server-side/logic.py",
 		"/home/wvyvern/Projects/sip/lcrs/server-side/templates/form.html",
 		"/home/wvyvern/Desktop/tictactoe.py"
 	],
@@ -120,7 +153,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -129,49 +162,50 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2632,
+						"buffer_size": 4081,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								636,
-								636
+								2314,
+								2314
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 918.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "server-side/templates/main.html",
+					"file": "server-side/crops.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 100,
+						"buffer_size": 331,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								76,
-								76
+								121,
+								121
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"auto_name": "rice, corn, coconut, sugarcane, bananas, pineapple",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -182,6 +216,93 @@
 				},
 				{
 					"buffer": 2,
+					"file": "server-side/RRLS.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1564,
+								1564
+							]
+						],
+						"settings":
+						{
+							"auto_name": "RRL",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server-side/templates/logic.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								581,
+								581
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "server-side/templates/main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 714.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "/home/wvyvern/Projects/School_Website/arachnid/arachnid/settings.py",
 					"semi_transient": false,
 					"settings":
@@ -207,7 +328,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
