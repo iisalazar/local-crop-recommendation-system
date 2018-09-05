@@ -8,6 +8,7 @@ while True:
 	try:
 		read_ser = ser.readline()
 		print(str(read_ser))
+		print(read_ser + "asdasdas")
 		time.sleep(1)
 	except KeyboardInterrupt:
 		print("\n Babye!!!")
