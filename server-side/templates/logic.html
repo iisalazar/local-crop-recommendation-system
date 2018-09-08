@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Logic Requests</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/semantic.min.css') }}">
-	
-</head>
-<body>
-	<div class="ui sidebar vertical menu">
-		<a href="#" class="item">Yadayadayad</a>
-	</div>
-	<div class="ui primary menu">
-		<a class="toc item">
-			<i class="sidebar icon"></i>
-			Logic
-		</a>
-	</div>
+{% extends "base.html" %}
+{% block content %}
 	<h1>{{ temperature }} *C</h1>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			    $('.toc').click(function() {
-			        $('.ui.sidebar').sidebar('toggle')
-			      });
-		});
-	</script>
-	<script type="text/javascript" src="{{ url_for('static', filename='dist/semantic.min.js') }}"></script>
-</body>
-</html>
+{% endblock content %}
