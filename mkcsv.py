@@ -19,12 +19,13 @@ def extract_data(db_name, table_name):
 		if data:
 			return data
 
-def write_data_to_csv(content):
-	with open('environment.csv', 'wb') as env:
+def write_data_to_csv(content, csv_file):
+	with open(csv_file, 'wb') as env:
 		writer = csv.writer(env)
 		writer.writerows(content)
 
 if __name__ == '__main__':
 	d = extract_data(sys.argv[1], sys.argv[2])
-	pprint.pprint(d)
-	write_data_to_csv(d)
+	#pprint.pprint(d)
+	x = raw_input("Filename of csv (must end with .csv):")
+	write_data_to_csv(d, x)
