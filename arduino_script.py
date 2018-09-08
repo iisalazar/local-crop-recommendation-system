@@ -14,7 +14,7 @@ class Arduino:
 			read_ser = self.ser.readline()
 			print(str(read_ser))
 			return read_ser
-		except:
+		except sqlite3.Error:
 			print("Something went wrong")
 
 	def write_data(self, data):
@@ -36,7 +36,11 @@ class Arduino:
 				connection.close()
 if __name__ == '__main__':
 	while True:
-		arduino = Arduino()
-		data = arduino.read_data()
-		arduino.write_data(data)
+		try:
+			arduino = Arduino()
+			data = arduino.read_data()
+			arduino.write_data(data)
+			time.sleep(1)
+		except KeyboardInterrupt:
+			sys.exit()
 #	print(a)
