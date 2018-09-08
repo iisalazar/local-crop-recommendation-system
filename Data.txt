@@ -1,4 +1,14 @@
 Tagkawayan
-	Trial 1 - 1 - 849
-	Trial 2 - 850 - 1738
-	Trial 3 - 1739 - 2641
+	Environment data:
+		Trial 1 - 1 - 849
+		Trial 2 - 850 - 1738
+		Trial 3 - 1739 - 2641
+	Environment buffer time (in one minute):
+		Trial 1
+		Trial 2
+		Trial 3
+
+	Soil data:
+		Trial #1 - 1 - 436
+		Trial #2 - 437 - 871
+		Trial #3 - 872 - 1308
