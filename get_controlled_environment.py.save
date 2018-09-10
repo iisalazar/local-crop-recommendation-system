@@ -1,0 +1,4 @@
+import requests
+url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric'
+ r = requests.get(url.format('Lucena City', api_key)).json()
+api_key = '5ed50787e4f36a97057b04bdf51623f1'
