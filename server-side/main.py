@@ -1,9 +1,15 @@
+from gevent import monkey
+monkey.patch_all()
+
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
 from logic import Calculate
 import random
+from flask_socketio import SocketIO, emit
+
+
 # getting the root directory of project
 ROOT_DIR = os.path.dirname(os.path.abspath('.'))
 # Instantiate the app
@@ -11,6 +17,7 @@ app = Flask(__name__)
 # Setup config for connecting to the sqlite database at ROOT_DIR
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+ ROOT_DIR + '/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+socketio = SocketIO(app)
 
 db = SQLAlchemy(app)
 # For model purposes 
@@ -114,6 +121,13 @@ def log():
 	#return jsonify({"Temperature": temp, "Pressure": pres, "Humidity": humd, "Soil Moisture": soil_h})
 
 
+@socketio.on('custom event')
+def print_message(msg):
+    print(msg)
+
+@app.route('/text')
+def text():
+    return render_template('text.html')
 
 def something():
 	signature = Environment(date_measured=datetime.now(), temperature=random.randrange(1000, 1200), air_pressure=random.randrange(11000, 12500), humidity=random.randrange(10,20))
@@ -125,4 +139,4 @@ def something():
 	db.session.commit()
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	socketio.run(app, debug=True)
