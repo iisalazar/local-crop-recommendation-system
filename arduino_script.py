@@ -14,7 +14,7 @@ class Arduino:
 			read_ser = self.ser.readline()
 			print(str(read_ser))
 			return read_ser
-		except sqlite3.Error:
+		except:
 			print("Something went wrong")
 
 	def write_data(self, data):

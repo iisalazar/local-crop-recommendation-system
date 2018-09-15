@@ -29,10 +29,8 @@ def extract_data(ranges):
 			temperature.append(float(c[i][2]))
 			pressure.append(float(c[i][3]))
 			humidity.append(float(c[i][4]))
-		trials['trial {}'.format(trial_key)] = {'temperature': statistics.mean(temperature), 'pressure': statistics.mean(pressure), 'humidity': statistics.mean(humidity)}
-
+		trials['trial {}'.format(trial_key)] = {'temperature ( *C)': statistics.mean(temperature), 'pressure (hpa)': statistics.mean(pressure)/100, 'humidity (%)': statistics.mean(humidity)}
 		trial_key += 1
-		print("----------------------- NEW TRIAL -----------------------")
 	pprint.pprint(trials)
 def main():
 	ranges = raw_input("Write the ranges of your query (seperated by a comma ',')")
