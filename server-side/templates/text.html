@@ -14,6 +14,7 @@
             
             socket.on('connect', function(msg) {
                 socket.emit('custom event', {data: 'I\'m connected!'});
+                socket.emit('start isabela');
             });
 
             socket.on('custom message', function(msg){
@@ -23,12 +24,18 @@
                 console.log(msg.time)
                 $('#test').html('<p>' + msg.time + '</p>');             
             });
-          
+            function sendMessage(){
+                socket.emit('receive message')
+            }
+            socket.on('isabela', function(message){
+                console.log(msg);
+            });
         });
     </script>
 </head>
 <body>
     <h3>Demo-Flask-SocketIO</h3>
     <p id='test'> Hello </p>
+    <button onclick="sendMessage()">Send message</button>
 </body>
 </html>

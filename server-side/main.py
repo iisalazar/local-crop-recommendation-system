@@ -121,10 +121,17 @@ def log():
 	#return jsonify({"Temperature": temp, "Pressure": pres, "Humidity": humd, "Soil Moisture": soil_h})
 
 
+@socketio.on('start isabela')
+def send():
+    socketio.emit('isabela', "data");
 @socketio.on('custom event')
 def print_message(msg):
     print(msg)
 
+@socketio.on('receive message')
+def send_message():
+    data = 'C'
+    emit('receive message', data=data)
 @app.route('/text')
 def text():
     return render_template('text.html')
@@ -139,4 +146,4 @@ def something():
 	db.session.commit()
 
 if __name__ == '__main__':
-	socketio.run(app, debug=True)
+	socketio.run(app)
