@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Yadayadayada</title>
+
+</head>
+<body>
+	
+	<table>
+		<thead>
+			<tr>
+				<td>
+					Air pressure
+				</td>
+				<td>
+					Air temperature
+				</td>
+				<td>
+					Humidity
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for env in Environment_data %}
+			<tr>
+				<td>{{ env.air_pressure }}</td>
+				<td>{{ env.temperature }}</td>
+				<td>{{ env.humidity }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>

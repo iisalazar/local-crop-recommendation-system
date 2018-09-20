@@ -1,23 +1,28 @@
 from gevent import monkey
 monkey.patch_all()
 
+
+import time
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
 from logic import Calculate
 import random
-from flask_socketio import SocketIO, emit
-
-
+from flask.ext.socketio import SocketIO, emit, join_room, disconnect
+from threading import Thread
+import logging
+logging.basicConfig()
+thread = None
 # getting the root directory of project
 ROOT_DIR = os.path.dirname(os.path.abspath('.'))
 # Instantiate the app
 app = Flask(__name__)
+socketio = SocketIO(app)
 # Setup config for connecting to the sqlite database at ROOT_DIR
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+ ROOT_DIR + '/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-socketio = SocketIO(app)
+
 
 db = SQLAlchemy(app)
 # For model purposes 
@@ -144,6 +149,21 @@ def something():
 	soil = Soil(date_measured=datetime.now(), soil_moisture=random.randrange(0,20))
 	db.session.add(soil)
 	db.session.commit()
+	return
+
+def handle_data():
+	while True:
+		time.sleep(1)
+		socketio.emit('receive', {"data": "Something"}, namespace='/test')
+
+@app.route('/receive')
+def receive():
+	global thread
+	if thread is None:
+		thread = Thread(target=handle_data)
+		thread.start()
+
+	return render_template("receive.html")
 
 if __name__ == '__main__':
 	socketio.run(app)
